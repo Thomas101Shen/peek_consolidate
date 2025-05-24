@@ -1,24 +1,86 @@
-# Overview
-The code works best if the datetime column is called Time, peeking will work most of the time but the consolidation won't. If you do not have pandas, install it however you prefer. Then run `main.py` however you prefer.
+# Peek Consolidate
 
-The code will prompt you for 4 options. A will return metadata, and the head and tail of all csv files in a directory.
-B will consolidate all data in a directory consisting similar data into one masterfile, append \_master.csv to it, and save it to master_merge.
-C will consolidate all data in a directory consisting the same "Time" column into one masterfile, and name it 
-D will terminate the program
+This is a Python utility designed to inspect, merge, and align multi-timeframe financial datasets — such as minute-level intraday breakouts with daily ATR values — into a clean master research file.
 
-This is meant to combine intraday and interday data
+---
+
+## Features
+
+- Preview CSVs before merging (see structure, head, tail)
+- Merge similar-format CSVs into one master file
+- Join interday and intraday datasets on `Time`
+- Includes example data to test functionality
+- CLI-style menu for ease of use
+
+---
+
+## Directory Layout
+
+```
+├── example_prices/        # Intraday data samples
+├── example_atr/           # Daily ATR samples
+├── master_merge/          # Folder created during merge steps
+├── main.py                # Program entry point
+```
+
+---
 
 ## Sample Usage
-Run `python main.py`
-When prompted, input `A`, and `example_prices`
-You will see the sample intraday NQ data that I provided (some days are missing)
-input `A` again, and `example_atr`
-You will see more sample NQ data, this is daily ATR data
 
-Try option `B` on each example directory, then `A` for `master_merge` to view the "master" csv tables
-Then, run option `C` on `master_merge` and `master.csv` will appear in your current directory
-Finally, run option `A` on `./`, and you will see the merged data.
-The example ATR is missing data from March 16th, so you could run dropna on the master.csv file and you will see the daily ATR merged with intraday prices
+1. Run the program:
+```bash
+python main.py
+```
 
-## Warnings
-Option C will keep rows that have NaN values. I thought this way gives more freedom. Feedback is welcomed. Also, is it risky for me to merge dataframes on left or right depending on which side has more instances? (I assume this way would enable intraday and interday data compatability but may introduce unforeseen errors down the line)
+2. Choose:
+- `A`: Preview contents of a folder
+- `B`: Merge CSVs with similar structure → `master_merge/*_master.csv`
+- `C`: Merge by "Time" column into `master.csv`
+- `D`: Exit
+
+3. Example walkthrough:
+```bash
+> A
+Enter directory: example_prices
+
+> A
+Enter directory: example_atr
+
+> B
+Enter directory: example_prices
+> B
+Enter directory: example_atr
+
+> C
+Enter directory: master_merge
+```
+
+4. You will now see a merged `master.csv` in your current working directory.
+
+---
+
+## Warnings & Considerations
+
+- Option C **preserves NaN values** to avoid implicit bias. Use `dropna()` as needed.
+- Merge direction (left vs right) defaults based on row count — may introduce inconsistencies in edge cases.
+- Feedback on merging logic (e.g., timestamp tolerance) is welcome.
+
+---
+
+## Dependencies
+
+- `pandas`
+- Python 3.6+
+
+Install as needed:
+```bash
+pip install pandas
+```
+
+---
+
+## Feedback
+
+If you work with multi-timeframe datasets or have opinions on safe joins for intraday/interday structures, your input would be appreciated.
+
+Pull requests, suggestions, or performance optimizations welcome.
