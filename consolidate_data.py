@@ -36,7 +36,11 @@ class Consolidate(Get_Csv):
 		try:
 			for file in self.file_names:
 					file_path = os.path.join(self.directory, file)
-					unique_id = file.split('_')[0]
+
+					if '_' in file:
+						unique_id = file.split('_')[0]
+					else:
+						unique_id = file.split('.')[0]
 
 					df = pd.read_csv(file_path, parse_dates=["Time"])
 					df["Date"] = df["Time"].dt.date

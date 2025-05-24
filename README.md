@@ -34,7 +34,7 @@ python main.py
 
 2. Choose:
 - `A`: Preview contents of a folder
-- `B`: Merge CSVs with similar structure → `master_merge/*_master.csv`
+- `B`: Merge CSVs with similar structure → `master_merge/*_master.csv`, drops rows with duplicate `Time` (refer to Warnings & Considerations)
 - `C`: Merge by "Time" column into `master.csv`
 - `D`: Exit
 
@@ -64,6 +64,7 @@ Enter directory: master_merge
 - Option C **preserves NaN values** to avoid implicit bias. Use `dropna()` as needed.
 - Merge direction (left vs right) defaults based on row count — may introduce inconsistencies in edge cases.
 - Primary key is `Time` and is assumed to be in standard datetime format.
+- When merging "different" together, the program will prefix the filename to whatever column it is adding. If there is an `_` in the filename, it will prefix the characters preceding the first `_`
 - Feedback on merging logic (e.g., timestamp tolerance) is welcome.
 
 ---
