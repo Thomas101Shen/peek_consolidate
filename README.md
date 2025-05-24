@@ -8,5 +8,16 @@ D will terminate the program
 
 This is meant to combine intraday and interday data
 
+## Sample Usage
+Run `python main.py`
+When prompted, input `A`, and `example_prices`
+You will see the sample intraday NQ data that I provided (some days are missing)
+input `A` again, and `example_atr`
+You will see more sample NQ data, this is daily ATR data
+
+Try option `B` on each example directory, then `A` for `master_merge` to view the "master" csv tables
+Then, run option `C` on `master_merge` and `master.csv` will appear in your current directory
+Finally, run option `A` on `./`, and you will see the merged data.
+
 ## Warnings
 Option C will keep rows that have NaN values. I thought this way gives more freedom. Feedback is welcomed. Also, is it risky for me to merge dataframes on left or right depending on which side has more instances? (I assume this way would enable intraday and interday data compatability but may introduce unforeseen errors down the line)

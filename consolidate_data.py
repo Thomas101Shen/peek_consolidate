@@ -49,7 +49,7 @@ class Consolidate(Get_Csv):
 						if len(master_df) >= len(df):
 							master_df = pd.merge(master_df, df, on="Date", how="left")
 						else:
-							master_df = pd.merge(master_df, df on="Date", how="right")
+							master_df = pd.merge(master_df, df, on="Date", how="right")
 
 			master_df = master_df.sort_values("Date").reset_index(drop=True)
 			# master_df.dropna(inplace=True)
