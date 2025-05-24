@@ -63,6 +63,7 @@ Enter directory: master_merge
 
 - Option C **preserves NaN values** to avoid implicit bias. Use `dropna()` as needed.
 - Merge direction (left vs right) defaults based on row count — may introduce inconsistencies in edge cases.
+- Primary key is `Time` and is assumed to be in standard datetime format.
 - Feedback on merging logic (e.g., timestamp tolerance) is welcome.
 
 ---
